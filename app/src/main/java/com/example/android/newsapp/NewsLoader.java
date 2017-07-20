@@ -1,11 +1,12 @@
 package com.example.android.newsapp;
 
-import android.content.Context;
 import android.content.AsyncTaskLoader;
+import android.content.Context;
+
 import java.util.List;
 
 /**
- * Created by Owner on 7/16/17.
+ * Created by Hardkornate on 7/16/17.
  */
 
 public class NewsLoader extends AsyncTaskLoader<List<News>> {

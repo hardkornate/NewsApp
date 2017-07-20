@@ -7,12 +7,8 @@ import android.content.Loader;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -31,19 +27,16 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public static final int NEWS_LOADER_ID = 1;
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     /**
-     * Adapter for the list of Books
+     * Adapter for the list of News Articles
      */
     private NewsAdapter mAdapter;
     private ListView newsListView;
     private View loadingIndicator;
 
-
-
     /**
      * TextView that is displayed when the list is empty
      */
     private TextView mEmptyStateTextView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +46,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         newsListView = (ListView) findViewById(R.id.list);
         mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
         newsListView.setEmptyView(mEmptyStateTextView);
-        ArrayList<News> newsList= new ArrayList<>();
+        ArrayList<News> newsList = new ArrayList<>();
+
         // Create a new adapter that takes an empty list of books as input
         mAdapter = new NewsAdapter(this, newsList);
         // Set the adapter on the {@link ListView}
@@ -85,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 // Find the current news article that was clicked on
                 News currentNews = mAdapter.getItem(position);
                 // Convert the String URL into a URI object (to pass into the Intent constructor)
+                assert currentNews != null;
                 if (currentNews.getUrl() != null) {
                     Uri newsUri = Uri.parse(currentNews.getUrl());
                     // Create a new intent to view the book URI
@@ -99,12 +94,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public boolean isOnline() {
         // Get a reference to the ConnectivityManager to check state of network connectivity
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
         // Get details on the currently active default data network
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
         // If there is a network connection, fetch data
         return (networkInfo != null && networkInfo.isConnected());
     }
-
 
 
     @Override
@@ -126,6 +122,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         // Set empty state text to display "There is no news on the current topic.."
         mEmptyStateTextView.setText(R.string.no_news);
+        mEmptyStateTextView.setVisibility(View.VISIBLE);
+
+        if (!isOnline()) {
+            mEmptyStateTextView.setText(R.string.no_internet_connection);
+        }
 
         // Clear the adapter of previous news data
         mAdapter.clear();

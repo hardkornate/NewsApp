@@ -1,14 +1,13 @@
 package com.example.android.newsapp;
 
-
 /**
- * Created by Owner on 7/16/17.
+ * Created by Hardkornate on 7/16/17.
  */
 
 class News {
-    private String mTitle;
-    private String mSection;
-    private String mUrl;
+    private String mTitle = " ";
+    private String mSection = " ";
+    private String mUrl = "about:blank";
 
     public News(String title, String section, String url){
         mTitle = title;
@@ -27,6 +26,5 @@ class News {
     public String getUrl() {
         return mUrl;
     }
-
 
 }

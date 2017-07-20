@@ -1,14 +1,12 @@
 package com.example.android.newsapp;
 
-/**
- * Created by Owner on 7/16/17.
- */
-
 import android.text.TextUtils;
 import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,7 +34,6 @@ final class QueryUtils {
     /**
      * Query the Guardian API and return a list of {@link News} objects.
      */
-
 
     static List<News> fetchNewsData(String requestUrl) {
         // Create URL object
