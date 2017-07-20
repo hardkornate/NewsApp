@@ -22,6 +22,7 @@ class NewsAdapter extends ArrayAdapter<News> {
 
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+
         // Check if there is an existing list item view (called convertView) that we can reuse,
         // otherwise, if convertView is null, then inflate a new list item layout.
         View listItemView = convertView;

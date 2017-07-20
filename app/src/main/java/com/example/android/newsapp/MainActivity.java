@@ -20,12 +20,14 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>> {
 
     public static final String NEWSSEARCHURL = "https://content.guardianapis.com/us/technology?api-key=f9d967d8-d712-40fd-8a6f-e1bd82d14d10";
+
     /**
      * Constant value for the news loader ID. We can choose any integer.
      * This really only comes into play if you're using multiple loaders.
      */
     public static final int NEWS_LOADER_ID = 1;
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
+
     /**
      * Adapter for the list of News Articles
      */
